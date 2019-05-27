@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Resigter Form</h1>
+        <form id="formtest" method="POST" onsubmit="return validation()">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="fname">Họ</label>
+                    <input type="text" class="form-control" id="fname" placeholder="Enter your first name"
+                        onkeyup="validFirstName()">
+                    <span id="firstname"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lname">Tên</label>
+                    <input type="text" class="form-control" id="lname" placeholder="Enter your last name"
+                        onkeyup=" validLastName()">
+                    <span id="lastname"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your mail"
+                    onkeyup="validEmail()">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+                <span id="emails"></span>
+            </div>
+            <div class="form-group">
+                <label for="phonenum">Số điện thoại</label>
+                <input type="text" class="form-control" id="phonenum" placeholder="Enter your phone number"
+                    onkeyup="validPhone()">
+                <span id="phonenumber"></span>
+            </div>
+            <div class="form-group">
+                <label for="pass">Mật khẩu</label>
+                <input type="password" class="form-control" id="pass" placeholder="Enter your password"
+                    onkeyup="validPw()">
+                <span id="password"></span>
+            </div>
+            <div class="form-group">
+                <label for="repass">Nhập lại mật khẩu</label>
+                <input type="password" class="form-control" id="repass" placeholder="Confirm your password again "
+                    onkeyup="validPw2()">
+                <span id="repassword"></span>
+            </div>
+            <div style="margin-left: 45%;">
+                <button type="submit" class="btn btn-success">Sign in</button>
+            </div>
+
+        </form>
+    </div>
+    <script>
+        var firstname = document.getElementById("firstname");
+        var lastname = document.getElementById("lastname");
+        var emails = document.getElementById("emails");
+        var phonenumber = document.getElementById("phonenumber");
+        var password = document.getElementById("password");
+        var repassword = document.getElementById("repassword");
+
+        var fName = document.getElementById("fname");
+        var lName = document.getElementById("lname");
+        var mail = document.getElementById("email");
+        var phone = document.getElementById("phonenum");
+        var psw = document.getElementById("pass");
+        var repsw = document.getElementById("repass");
+
+        var demo = false;
+        var demo1 = false;
+        var demo2 = false;
+        var demo3 = false;
+        var demo4 = false;
+        var demo5 = false;
+        function validFirstName() {
+            var check = /^[A-Za-z]/;
+            if (fName.value.match(check) && fName.value.length >= 3 && fName.value.length <= 7) {
+                fName.classList.add("true");
+                firstname.innerHTML = "";
+                demo = true;
+            }
+            else {
+                fName.classList.remove("true");
+                fName.classList.add("false");
+                firstname.innerHTML = "First name is invalid";
+                demo = false;
+            }
+        }
+        function validLastName() {
+            var check1 = /^[A-Za-z]/;
+            if (lName.value.match(check1) && lName.value.length >= 3 && lName.value.length <= 7) {
+                lName.classList.add("true");
+                lastname.innerHTML = "";
+                demo1 = true;
+            }
+            else {
+                lName.classList.remove("true");
+                lName.classList.add("false");
+                lastname.innerHTML = "Last name is invalid";
+                demo1 = false;
+            }
+        }
+        function validEmail() {
+            var check2 = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+            if (mail.value.match(check2)) {
+                mail.classList.add("true");
+                emails.innerHTML = "";
+                demo2 = true;
+            }
+            else {
+                email.classList.remove("true");
+                email.classList.add("false");
+                emails.innerHTML = "Email is invalid";
+                demo2 = false;
+            }
+        }
+        function validPhone() {
+            var check3 = /^[0-9]/;
+            if (phone.value.match(check3) && phone.value.length >= 9 && phone.value.length <= 11) {
+                phone.classList.add("true");
+                phonenumber.innerHTML = "";
+                demo3 = true;
+            }
+            else {
+                phone.classList.remove("true");
+                phone.classList.add("false");
+                phonenumber.innerHTML = "Phone number is invalid";
+                demo3 = false;
+            }
+        }
+
+        function validPw() {
+            var check4 = /^[A-Za-z0-9-]/;
+            if (psw.value.match(check4) && psw.value.length >= 6 && psw.value.length < 32) {
+                psw.classList.add("true");
+                password.innerHTML = "";
+                demo4 = true;
+            }
+            else {
+                psw.classList.remove("true");
+                psw.classList.add("false");
+                password.innerHTML = "Password is invalid";
+                demo4 = false;
+            }
+        }
+        function validPw2() {
+            if (psw.value === repsw.value) {
+                repsw.classList.add("true");
+                repassword.innerHTML = "";
+                demo5 = true;
+            }
+            else {
+                repsw.classList.remove("true");
+                repsw.classList.add("false");
+                repassword.innerHTML = "Your password not match !";
+                demo5 = false;
+            }
+        }
+
+        function validation() {
+            validFirstName();
+            validLastName();
+            validEmail();
+            validPw();
+            validPw2();
+            validPhone();
+            if (!demo || !demo1 || !demo2 || !demo3 || !demo4 || !demo5) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+    <style type="text/css">
+        .container {
+            width: 800px;
+            padding: 50px;
+            background-color: #e9ecef;
+        }
+
+        .false {
+            background-image: url(./images/cancel-mark.png);
+            background-position: right;
+            background-repeat: no-repeat;
+
+        }
+
+        .true {
+            background-image: url(./images/check.png);
+            background-position: right;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: green;
+            text-align: center;
+        }
+
+        #firstname,
+        #lastname,
+        #emails,
+        #phonenumber,
+        #password,
+        #repassword {
+            color: red;
+        }
+    </style>
+
+</body>
+
+</html>
