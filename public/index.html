@@ -47,7 +47,7 @@
             </div>
             <div class="form-group">
                 <label for="phonenum">Số điện thoại</label>
-                <input type="number" class="form-control" id="phonenum" placeholder="Enter your phone number"
+                <input type="text" class="form-control" id="phonenum" placeholder="Enter your phone number"
                     onkeyup="validPhone()">
                 <span id="phonenumber"></span>
             </div>
@@ -56,7 +56,7 @@
                 <input type="password" class="form-control" id="pass" placeholder="Enter your password"
                     onkeyup="validPw()">
                 <span id="password"></span>
-            </div>
+            </div>  
             <div class="form-group">
                 <label for="repass">Nhập lại mật khẩu</label>
                 <input type="password" class="form-control" id="repass" placeholder="Confirm your password again "
@@ -133,7 +133,7 @@
             }
         }
         function validPhone() {
-            var check3 = /^[0-9]/;
+            var check3 = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i;;
             if (phone.value.match(check3) && phone.value.length >= 9 && phone.value.length <= 11) {
                 phone.classList.add("true");
                 phonenumber.innerHTML = "";
@@ -162,10 +162,16 @@
             }
         }
         function validPw2() {
-            if (psw.value === repsw.value) {
+            if (psw.value === repsw.value && psw.value != "") {
                 repsw.classList.add("true");
                 repassword.innerHTML = "";
                 demo5 = true;
+            }
+            else if(psw.value === repsw.value && psw.value == ""){
+                repsw.classList.remove("true");
+                repsw.classList.add("false");
+                repassword.innerHTML = "";
+                demo5 = false;
             }
             else {
                 repsw.classList.remove("true");
